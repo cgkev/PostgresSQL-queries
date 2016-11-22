@@ -96,21 +96,127 @@ public class Query {
 	}
 
 	public static void addMusician(Connection connection) throws SQLException {
+		System.out.println("------Add Musician------");
+		
+		Scanner reader = new Scanner(System.in);
+
+		System.out.print("SSN: ");
+		String ssn = reader.next();
+		
+		System.out.print("Name: ");
+		String name = reader.next();
+		
+		System.out.print("HouseID: ");
+		String house_id = reader.next();
+
+		//TODO: Do shit into database
+
+		
+		
+		
+		System.out.println();
 	}
 
 	public static void deleteMusician(Connection connection) throws SQLException {
+		System.out.println("------Delete Musician------");
+
+		Scanner reader = new Scanner(System.in);
+
+		System.out.print("Enter Musician SSN to delete: ");
+		String ssn = reader.next();
+		
+		//TODO: Do shit into database
+
+		
+		
+		
+		System.out.println();
+
 	}
 
 	public static void addSong(Connection connection) throws SQLException {
+		System.out.println("------Add Song------");
+
+		Scanner reader = new Scanner(System.in);
+
+		System.out.print("AlbumID: ");
+		String a_id = reader.next();
+		
+		System.out.print("SongID: ");
+		String s_id = reader.next();
+		
+		System.out.print("Title: ");
+		String title = reader.next();
+		
+		System.out.print("Author: ");
+		String author = reader.next();
+		
+		//TODO: Do shit into database
+		
+		
+		
+		
+		System.out.println();
 	}
 
 	public static void deleteSong(Connection connection) throws SQLException {
+		System.out.println("------Delete Song------");
+
+		Scanner reader = new Scanner(System.in);
+
+		System.out.print("Enter Song ID to delete: ");
+		String id = reader.next();
+		
+		//TODO: Do shit into database
+
+		
+		
+		System.out.println();
 	}
 
 	public static void addAlbum(Connection connection) throws SQLException {
+		System.out.println("------Add Album------");
+
+		Scanner reader = new Scanner(System.in);
+
+		System.out.print("Producer: ");
+		String a_id = reader.next();
+		
+		System.out.print("AlbumID: ");
+		String s_id = reader.next();
+		
+		System.out.print("Title: ");
+		String title = reader.next();
+		
+		System.out.print("Date: ");
+		String date = reader.next();
+	
+		System.out.print("Format: ");
+		String format = reader.next();
+		
+		System.out.print("Identifier: ");
+		String identifier = reader.next();
+		
+		//TODO: Do shit into database
+
+		
+		
+		System.out.println();
 	}
 
 	public static void deleteAlbum(Connection connection) throws SQLException {
+		System.out.println("------Delete Album------");
+
+		Scanner reader = new Scanner(System.in);
+
+		System.out.print("Enter Album ID to delete: ");
+		String a_id = reader.next();
+		
+		//TODO: Do shit into database
+
+		
+		
+		System.out.println();
 	}
 
 	public static void printALL(Connection connection) throws SQLException {
