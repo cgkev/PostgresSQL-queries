@@ -42,6 +42,8 @@ public class Query {
 		} else {
 			System.out.println("Failed to make connection!\n");
 		}
+		connection.setAutoCommit(false);
+
 		Scanner reader = new Scanner(System.in);
 		int input = -99;
 
@@ -58,7 +60,7 @@ public class Query {
 
 			System.out.print("Enter a number: ");
 			input = reader.nextInt();
-			
+
 			System.out.println();
 
 			if (input == 1) {
@@ -97,23 +99,42 @@ public class Query {
 
 	public static void addMusician(Connection connection) throws SQLException {
 		System.out.println("------Add Musician------");
-		
+
 		Scanner reader = new Scanner(System.in);
 
 		System.out.print("SSN: ");
 		String ssn = reader.next();
-		
+
 		System.out.print("Name: ");
 		String name = reader.next();
-		
+
 		System.out.print("HouseID: ");
 		String house_id = reader.next();
 
-		//TODO: Do shit into database
+		// TODO: Do shit into database
+		boolean inserted = true;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			System.out.println("Opened database successfully");
 
+			stmt = connection.createStatement();
+			String sql = "INSERT INTO Musician "
+					+ "VALUES (" + ssn +  ", '"+ name +"', '"+ house_id +"');";
+			
+			stmt.executeUpdate(sql);
+			stmt.close();
+			connection.commit();
+			connection.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			inserted = false;
+		}
+		if(inserted){
+			System.out.println("Musician Added Correctly");	
+		}
 		
-		
-		
+
 		System.out.println();
 	}
 
@@ -124,13 +145,34 @@ public class Query {
 
 		System.out.print("Enter Musician SSN to delete: ");
 		String ssn = reader.next();
-		
-		//TODO: Do shit into database
 
+		// TODO: Do shit into database
 		
+		boolean inserted = true;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			System.out.println("Opened database successfully");
+
+			stmt = connection.createStatement();
+	         String sql = "DELETE from Musician where ssn='" + ssn +"';";
+
+			
+			stmt.executeUpdate(sql);
+			stmt.close();
+			connection.commit();
+			connection.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			inserted = false;
+		}
+		if(inserted){
+			System.out.println("Musician SSN# "+ ssn  +" deleted.");	
+		}
 		
 		
 		System.out.println();
+
 
 	}
 
@@ -141,21 +183,40 @@ public class Query {
 
 		System.out.print("AlbumID: ");
 		String a_id = reader.next();
-		
+
 		System.out.print("SongID: ");
 		String s_id = reader.next();
-		
+
 		System.out.print("Title: ");
 		String title = reader.next();
-		
+
 		System.out.print("Author: ");
 		String author = reader.next();
+
+		// TODO: Do shit into database
+		boolean inserted = true;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			System.out.println("Opened database successfully");
+
+			stmt = connection.createStatement();
+			String sql = "INSERT INTO Songs "
+					+ "VALUES (" + a_id +  ", "+ s_id +", '"+ title +"', '"+ author +"');";
+			
+			stmt.executeUpdate(sql);
+			stmt.close();
+			connection.commit();
+			connection.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			inserted = false;
+		}
+		if(inserted){
+			System.out.println("Song Added Correctly");	
+		}
 		
-		//TODO: Do shit into database
-		
-		
-		
-		
+
 		System.out.println();
 	}
 
@@ -166,11 +227,33 @@ public class Query {
 
 		System.out.print("Enter Song ID to delete: ");
 		String id = reader.next();
-		
-		//TODO: Do shit into database
 
+		// TODO: Do shit into database
 		
+
+		boolean inserted = true;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			System.out.println("Opened database successfully");
+
+			stmt = connection.createStatement();
+	         String sql = "DELETE from Songs where song_id ='" + id +"';";
+
+			
+			stmt.executeUpdate(sql);
+			stmt.close();
+			connection.commit();
+			connection.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			inserted = false;
+		}
+		if(inserted){
+			System.out.println("Song #"+ id  +" deleted.");	
+		}
 		
+
 		System.out.println();
 	}
 
@@ -180,26 +263,46 @@ public class Query {
 		Scanner reader = new Scanner(System.in);
 
 		System.out.print("Producer: ");
-		String a_id = reader.next();
-		
+		int a_id = reader.nextInt();
+
 		System.out.print("AlbumID: ");
-		String s_id = reader.next();
-		
+		int s_id = reader.nextInt();
+
 		System.out.print("Title: ");
 		String title = reader.next();
-		
+
 		System.out.print("Date: ");
 		String date = reader.next();
-	
+
 		System.out.print("Format: ");
 		String format = reader.next();
-		
+
 		System.out.print("Identifier: ");
 		String identifier = reader.next();
-		
-		//TODO: Do shit into database
 
-		
+		// TODO: Do shit into database
+				boolean inserted = true;
+				Statement stmt = null;
+				try {
+					Class.forName("org.postgresql.Driver");
+					System.out.println("Opened database successfully");
+
+					stmt = connection.createStatement();
+					String sql = "INSERT INTO Album "
+							+ "VALUES (" + a_id +", " +  s_id + ",'"+ title +"', "+ date + ", '"+ format +"', '"+ identifier +"') ;";
+					
+					stmt.executeUpdate(sql);
+					stmt.close();
+					connection.commit();
+					connection.close();
+				} catch (Exception e) {
+					System.err.println(e.getClass().getName() + ": " + e.getMessage());
+					inserted = false;
+				}
+				if(inserted){
+					System.out.println("Album Added Correctly");	
+				}
+				
 		
 		System.out.println();
 	}
@@ -211,10 +314,29 @@ public class Query {
 
 		System.out.print("Enter Album ID to delete: ");
 		String a_id = reader.next();
-		
-		//TODO: Do shit into database
 
-		
+		// TODO: Do shit into database
+		boolean inserted = true;
+		Statement stmt = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			System.out.println("Opened database successfully");
+
+			stmt = connection.createStatement();
+	         String sql = "DELETE from Album where album_id ='" + a_id +"';";
+
+			
+			stmt.executeUpdate(sql);
+			stmt.close();
+			connection.commit();
+			connection.close();
+		} catch (Exception e) {
+			System.err.println(e.getClass().getName() + ": " + e.getMessage());
+			inserted = false;
+		}
+		if(inserted){
+			System.out.println("Album #"+ a_id  +" deleted.");	
+		}
 		
 		System.out.println();
 	}
